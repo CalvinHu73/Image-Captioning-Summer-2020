@@ -1,6 +1,7 @@
 import os
 import time
 import hashlib
+import json
 
 import urllib.request
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -65,6 +66,15 @@ def display_image(filename):
     print("Running display")
 	#print('display_image filename: ' + filename)
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
+from pprint import pprint
+
+@app.route('/examples')
+def examples():
+    with open("examples.json", "r") as examplesFile:    
+        exampleArray = json.load(examplesFile)
+    print(exampleArray[0]["img"])
+    return render_template("examples.html", exampleArray=exampleArray)
 
 
 if __name__ == "__main__":
