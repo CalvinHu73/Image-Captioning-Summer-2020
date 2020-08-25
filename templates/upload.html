@@ -37,7 +37,9 @@
       
       {% if filename %}
 	<div>
-		<img src="{{ url_for('display_image', filename=filename) }}">
+    <img src="{{ url_for('display_image', filename=filename) }}">
+    <h5>CAPTION</h5>
+    <p>{{ caption }}</p>
 	</div>
       {% endif %}
 

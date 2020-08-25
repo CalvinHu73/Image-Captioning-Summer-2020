@@ -2,6 +2,7 @@ import os
 import time
 import hashlib
 import json
+from generator import *
 
 import urllib.request
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -52,7 +53,9 @@ def upload():
                 flash('Image successfully uploaded and displayed')
                 print("Image saved")
                 print(filename)
-                return render_template("upload.html", filename=filename)
+                caption = generate(filename)
+                print(caption)
+                return render_template("upload.html", filename=filename, caption=caption)
 
             else:
                 flash('Allowed image types are -> png, jpg, jpeg, gif')
